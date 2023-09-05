@@ -27,6 +27,14 @@ medioFact n | n == 0  || n == 1 = 1
             | otherwise = n * medioFact (n-2)
 
 -- Ejercicio 6
+<<<<<<< HEAD
+=======
+sumaDigitos :: Int -> Int
+sumaDigitos n | rest == 0 = n
+              | otherwise = rest + sumaDigitos (div n 10)
+              where rest = mod n 10
+
+>>>>>>> cf1250df313eacea94f8ac6421c0ec63227f1d86
 sumaDigitos :: Int ->Int
 sumaDigitos 0 = 0
 sumaDigitos n = mod n 10 + sumaDigitos (div n 10)
@@ -36,6 +44,7 @@ todosDigitosIguales :: Int -> Bool
 todosDigitosIguales n | n < 10 = True
                       | otherwise = mod n 10 == mod (div n 10) 10 && todosDigitosIguales (div n 10)
 
+<<<<<<< HEAD
 -- Ejercico 8 
 iesimoDigito :: Int -> Int -> Int
 iesimoDigito n i = mod (div n (10^(cantDigitos n - i))) 10
@@ -57,6 +66,23 @@ esCapicua_aux n q | q == div (cantDigitos n) 2 || q == (div (cantDigitos n) 2) +
 
 esCapicua :: Int -> Bool
 esCapicua n = esCapicua_aux n 1
+=======
+-- Ejercicio 8
+cantDigitos :: Int -> Int
+cantDigitos n | n < 10 = 1
+              | otherwise = 1 + cantDigitos (div n 10)
+
+iesimoDigito :: Int -> Int -> Int
+iesimoDigito n i = mod (div n (10^(cantDigitos n-i))) 10
+
+-- Ejercicio 9
+ultimoNum :: Int -> Int
+ultimoNum n | n < 10 = n
+            | otherwise = ultimoNum (div n 10)
+
+esCapicua :: Int -> Bool
+esCapicua n = mod n 10 == ultimoNum n
+>>>>>>> cf1250df313eacea94f8ac6421c0ec63227f1d86
 
 -- Ejercicio 10
 f1 :: Int -> Int
@@ -110,6 +136,31 @@ sumaPotencias :: Int -> Int -> Int -> Int
 sumaPotencias q 0 m = sumaPotencias_b q 0 m
 sumaPotencias q n m = sumaPotencias_b q n m + sumaPotencias q (n-1) m 
 
+<<<<<<< HEAD
+=======
+-- Ejercico 8 
+iesimoDigito :: Int -> Int -> Int
+iesimoDigito n i = mod (div n (10^(cantDigitos n - i))) 10
+
+cantDigitos :: Int -> Int
+cantDigitos x | x == 0 = 0
+              | otherwise = 1 + cantDigitos (div x 10)
+--Ejercicio 9
+primerDigito :: Int -> Int -> Int
+primerDigito n q = iesimoDigito n (cantDigitos n - q)
+
+ultimoDigito :: Int -> Int -> Int
+ultimoDigito n q = iesimoDigito n (q+1)
+
+esCapicua_aux :: Int -> Int -> Bool
+esCapicua_aux n q | q == div (cantDigitos n) 2 || q == (div (cantDigitos n) 2) +1  = True
+              | primerDigito n q == ultimoDigito n q = esCapicua_aux n (q+1)
+              | otherwise = False
+
+esCapicua :: Int -> Bool
+esCapicua n = esCapicua_aux n 1
+
+>>>>>>> cf1250df313eacea94f8ac6421c0ec63227f1d86
 -- Ejercicio 15
 sumaRacionales_interna :: Int -> Int -> Float
 sumaRacionales_interna p 1 = fromIntegral p
@@ -117,4 +168,9 @@ sumaRacionales_interna p q = (fromIntegral p) / (fromIntegral q) + sumaRacionale
 
 sumaRacionales :: Int -> Int -> Float
 sumaRacionales 1 m = sumaRacionales_interna 1 m
+<<<<<<< HEAD
 sumaRacionales n m = sumaRacionales_interna n m + sumaRacionales (n-1) m
+=======
+sumaRacionales n m = sumaRacionales_interna n m + sumaRacionales (n-1) m
+
+>>>>>>> cf1250df313eacea94f8ac6421c0ec63227f1d86
