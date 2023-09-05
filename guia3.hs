@@ -1,5 +1,7 @@
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Use /=" #-}
 absoluto :: Int -> Int
-absoluto n | n>=0 = n 
+absoluto n | n>=0 = n
      | otherwise = -n
 
 maximoabsoluto :: Int -> Int -> Int
@@ -20,7 +22,7 @@ maximo3 (x,y,z) | x > y && x>z = x
                 | y>x && y>z = y
                 | otherwise = z
 
-func n = (if n==1 then 2 else 4)
+func n = if n==1 then 2 else 4
 
 -- Con guardas
 algunoEs0 :: Float -> Float -> Bool
@@ -41,7 +43,7 @@ ambosSon0_p 0 0 = True
 ambosSon0_p _ _ = False
 
 intervalo :: Float -> Int
-intervalo x | (x <= 3 ) = 0 | (x > 3 && x <= 7) = 1 | otherwise = 2
+intervalo x | x <= 3  = 0 | x > 3 && x <= 7 = 1 | otherwise = 2
 
 mismoIntervalo :: Float -> Float -> Bool
 mismoIntervalo x y | intervalo x == intervalo y = True
@@ -63,7 +65,7 @@ multiplos x y | x<0 && y<0 = error "negativos"
 
 digitosUnidades :: Int -> Int
 digitosUnidades n | n<0 = error "negativos"
- | otherwise = mod n 10 
+ | otherwise = mod n 10
 
 digitosDecenas :: Int -> Int
 digitosDecenas n | n<0 = error "negativos"
@@ -97,11 +99,11 @@ sumarSoloMultiplos (x,y,z) w | w <0 = error "Negativo"
                              | otherwise = multiplosSuma x w + multiplosSuma y w + multiplosSuma z w
 
 posPrimerPar :: (Int, Int, Int) -> Int
-posPrimerPar (x,y,z) | mod x 2 == 0 = 0
-                     | mod y 2 == 0 = 1
-                     | mod z 2 == 0 = 2
+posPrimerPar (x,y,z) | even x = 0
+                     | even y = 1
+                     | even z = 2
                      | otherwise = 4
-                
+
 crearPar :: a -> b -> (a,b)
 crearPar a b = (a,b)
 
@@ -109,16 +111,16 @@ invertir :: (a,b) -> (b,a)
 invertir (a,b) = (b,a)
 
 bisiesto :: Int -> Bool
-bisiesto x = (not (mod x 100 == 0) || mod x 400 == 0) && mod x 4 == 0 
+bisiesto x = (not (mod x 100 == 0) || mod x 400 == 0) && mod x 4 == 0
 
 sumarLista a | a == [] = 0
              | otherwise = head a + sumarLista (tail a)
 
 todosMenores :: (Int, Int, Int) ->Bool
-todosMenores (x,y,z) = f(x)>g(x) && f(y)>g(y) && f(z)>g(z)
+todosMenores (x,y,z) = f x>g x && f y>g y && f z>g z
 
 g :: Int -> Int
-g n | mod n 2 == 0 = div n 2
+g n | even n = div n 2
     | otherwise = 3*n+1
 
 f :: Int->Int
@@ -135,3 +137,4 @@ comparar :: Int -> Int -> Int
 comparar x y | sumaUltimosDosDigitos x < sumaUltimosDosDigitos y = 1
              | sumaUltimosDosDigitos x > sumaUltimosDosDigitos y = -1
              | sumaUltimosDosDigitos x == sumaUltimosDosDigitos y = 0
+
